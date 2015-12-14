@@ -54,20 +54,26 @@ $(document).ready(function(){
         $(".result").append("<li>"+MailModel.messages[i]+"</li>");    
     }
     $(".btn-filter").click(function(){
-        if(MailModel.filteringOn==false){
+        bottoneCliccato(MailModel.filteringOn);
+    });
+});
+
+function bottoneCliccato(controllo){
+    if(controllo==false){
             var filtered = MailModel.filter();
             $(".result").empty();
             for(var i=0; i<filtered.length; i++){
                 $(".result").append("<li>"+filtered[i]+"</li>");
             }
             MailModel.filteringOn=true;
-        } else {
+        } else if(controllo==true){
             MailModel.init();
             $(".result").empty();
             for(var i=0; i<MailModel.messages.length; i++){
                 $(".result").append("<li>"+MailModel.messages[i]+"</li>");    
             }
             MailModel.filteringOn=false;
+        } else {
+            alert("some kind of error!");   
         }
-    });
-});
+}
